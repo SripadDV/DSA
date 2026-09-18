@@ -1,0 +1,18 @@
+class Solution:
+    def subarraysWithXorK(self, nums, k):
+
+        subArrXor = 0
+        hashStore = dict()
+        count = 0
+        hashStore[0] = 1
+        for i in range(len(nums)):
+            num = nums[i]
+            subArrXor ^= num
+            if subArrXor ^ k in hashStore.keys():
+                count += hashStore[subArrXor^k]
+            if subArrXor in hashStore.keys():
+                hashStore[subArrXor] += 1
+            else:
+                hashStore[subArrXor] = 1
+        
+        return count
